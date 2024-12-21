@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+    maki-cata-blog:
+        image: ###maki-cata-blog
+        ports:
+            - 3000:3000
+        env_file:
+            - .env
+        volumes:
+            #PARA QUE FUNCIONE EL NODAEMON
+            - ./maki-cata-blog/src/:/usr/src/app/
+        networks:
+            - maki-cata-network
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.maki_catalin-trandafir_com.entrypoints=web, websecure"
+            - "traefik.http.routers.maki_catalin-trandafir_com.rule=Host(`maki.catalin-trandafir.com`) || Host(`www.maki.catalin-trandafir.com`)"
+            - "traefik.http.routers.maki_catalin-trandafir_com.tls=true"
+            - "traefik.http.routers.maki_catalin-trandafir_com.tls.certresolver=production"
+            - "traefik.http.services.maki_catalin-trandafir_com.loadbalancer.server.port=3000"
+            - "traefik.docker.network=traefik"
+    maki-cata-db:
+        image: ###maki-cata-db
+        volumes:
+            - maki-cata-db:/data/db
+        environment:
+            MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MARIADB_PASSWORD: ${DB_PASSWORD}
+            MARIADB_USER: ${DB_USER}
+            MYSQL_DATABASE: ${DB_NAME}
+        networks:
+            - maki-cata-network
+
+volumes:
+    maki-cata-db:
+
+networks:
+    maki-cata-network:

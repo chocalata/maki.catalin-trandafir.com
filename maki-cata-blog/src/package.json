@@ -1,0 +1,26 @@
+{
+	"name": "blog",
+	"version": "1.0.0",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"local": "nodemon --ignore ./node_modules/ --legacy-watch app.js -e ejs,css,js"
+	},
+	"author": "Catalin Trandafir",
+	"license": "ISC",
+	"description": "",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"dependencies": {
+		"ejs": "^3.1.10",
+		"express": "^4.21.2",
+		"helmet": "^8.0.0",
+		"mariadb": "^3.4.0",
+		"multer": "^1.4.5-lts.1",
+		"sharp": "^0.33.5"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.9"
+	}
+}

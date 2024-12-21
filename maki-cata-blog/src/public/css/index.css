@@ -1,0 +1,153 @@
+/* General reset and typography */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    color: #4a4a4a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #d81b60;
+    margin: 1.5rem 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling the add button */
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #d81b60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(216, 27, 96, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+
+
+.add-button img {
+    width: 30px;
+    height: 30px;
+}
+
+/* the button has to be bigger when the screen is bigger and more separated from the border */
+@media (min-width: 768px) {
+    .add-button {
+        width: 100px;
+        height: 100px;
+        bottom: 50px;
+        right: 50px;
+    }
+
+    .add-button img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.add-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 14px rgba(216, 27, 96, 0.7);
+}
+
+.no-entries {
+    font-size: 3rem;
+    color: #880e4f;
+    text-align: center;
+    margin: 2rem auto;
+    opacity: 0.8;
+}
+
+/*when the vw is bigger make no-entries much bigger*/
+@media (min-width: 768px) {
+    .no-entries {
+        font-size: 5rem;
+    }
+}
+
+/* Post card styling */
+.post-card {
+    background: #ffffff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1.5rem auto;
+    overflow: hidden;
+}
+
+.post-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.post-card-content {
+    padding: 1rem;
+}
+
+.post-card-content p {
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.post-card-header h2 {
+    font-size: 1.5rem;
+    color: #880e4f;
+    margin-bottom: 0.5rem;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: #888888;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Container for posts */
+.entries {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+    padding: 1rem;
+    background: #880e4f;
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #f8bbd0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

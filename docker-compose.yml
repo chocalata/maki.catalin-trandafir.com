@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+    maki-cata-blog:
+        build:
+            context: "./maki-cata-blog"
+            dockerfile: "Dockerfile.local"
+        ports:
+            - 3000:3000
+        env_file:
+            - .env
+        volumes:
+            #PARA QUE FUNCIONE EL NODAEMON
+            - ./maki-cata-blog/src/:/usr/src/app/
+        networks:
+            - maki-cata-network
+    maki-cata-db:
+        build:
+            context: "./maki-cata-db"
+            dockerfile: "Dockerfile"
+        volumes:
+            - maki-cata-db:/data/db
+        environment:
+            MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MARIADB_PASSWORD: ${DB_PASSWORD}
+            MARIADB_USER: ${DB_USER}
+            MYSQL_DATABASE: ${DB_NAME}
+        networks:
+            - maki-cata-network
+
+volumes:
+    maki-cata-db:
+
+networks:
+    maki-cata-network:

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="/img/heart.svg" type="image/svg+xml" />
+		<link rel="stylesheet" href="/css/index.css" />
+		<title>Maki & Cata</title>
+		<!-- add the indes.js script -->
+		<script src="/js/index.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<h1>Maki & Cata</h1>
+		</header>
+		<%- include('partials/add-modal') %>
+		<main class="entries">
+			<% if (entries.length === 0) { %>
+			<p class="no-entries">No hay aventuras aún</p>
+			<% } else { %> <% entries.forEach((entry) => { %>
+			<article class="post-card">
+				<img
+					src="/img/blog-images/<%= entry.image_name %>"
+					alt="Image for <%= entry.title %>"
+					class="post-card-image"
+				/>
+				<div class="post-card-content">
+					<div class="post-card-header">
+						<h2><%= entry.title %></h2>
+						<p class="post-date">
+							<%= entry.date.toLocaleDateString('es-ES', { year:
+							'numeric', month: '2-digit', day: '2-digit'
+							}).split('/').join('-') %>
+						</p>
+					</div>
+					<p><%= entry.description %></p>
+				</div>
+			</article>
+			<% }); } %>
+		</main>
+
+		<a class="add-button" aria-label="Añadir nueva aventura">
+			<img src="/img/add.svg" alt="Add" />
+		</a>
+
+		<footer>
+			<p>Hecho con ❤️ para Maki</p>
+		</footer>
+	</body>
+</html>

@@ -2,14 +2,11 @@ version: "3.8"
 
 services:
     maki-cata-blog:
-        image: ###maki-cata-blog
+        image: chocalata/maki.catalin-trandafir.com:maki-cata-blog_2024-12-21-v1
         ports:
             - 3000:3000
         env_file:
             - .env
-        volumes:
-            #PARA QUE FUNCIONE EL NODAEMON
-            - ./maki-cata-blog/src/:/usr/src/app/
         networks:
             - maki-cata-network
         labels:
@@ -21,7 +18,7 @@ services:
             - "traefik.http.services.maki_catalin-trandafir_com.loadbalancer.server.port=3000"
             - "traefik.docker.network=traefik"
     maki-cata-db:
-        image: ###maki-cata-db
+        image: chocalata/maki.catalin-trandafir.com:maki-cata-db_2024-12-21-v1
         volumes:
             - maki-cata-db:/data/db
         environment:

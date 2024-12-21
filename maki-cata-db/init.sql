@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS blog_entries (
     image_name VARCHAR(255) NULL
 );
 
--- Grant all privileges to the user 'test'
-GRANT ALL PRIVILEGES ON blog_db.* TO 'test'@'%' IDENTIFIED BY 'test';
+-- Grant all privileges to the user 'maki-cata'
+GRANT ALL PRIVILEGES ON blog_db.* TO 'maki-cata'@'%';
 FLUSH PRIVILEGES;
 
 

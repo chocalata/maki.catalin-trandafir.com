@@ -17,7 +17,7 @@ services:
     maki-cata-db:
         build:
             context: "./maki-cata-db"
-            dockerfile: "Dockerfile"
+            dockerfile: "Dockerfile.local"
         volumes:
             - maki-cata-db:/data/db
         environment:

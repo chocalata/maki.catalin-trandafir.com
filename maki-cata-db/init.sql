@@ -19,6 +19,6 @@ FLUSH PRIVILEGES;
 
 
 -- Optionally, insert initial data
-INSERT INTO blog_entries (title, description, date, image_name)
-VALUES 
-('Sample Title', 'This is a sample description.', '2024-12-20', 'sample_image.jpg');
+-- INSERT INTO blog_entries (title, description, date, image_name)
+-- VALUES 
+-- ('Sample Title', 'This is a sample description.', '2024-12-20', 'sample_image.jpg');

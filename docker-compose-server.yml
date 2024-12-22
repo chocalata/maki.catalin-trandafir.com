@@ -10,6 +10,8 @@ services:
         networks:
             - maki-cata-network
             - traefik
+        volumes:
+            - ./blog-images/:/usr/src/app/public/img/blog-images/
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.maki_catalin-trandafir_com.entrypoints=web, websecure"
@@ -21,7 +23,7 @@ services:
     maki-cata-db:
         image: chocalata/maki.catalin-trandafir.com:maki-cata-db_2024-12-21-v4
         volumes:
-            - maki-cata-db:/data/db
+            - maki-cata-db:/var/lib/mysql
         environment:
             MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
             MARIADB_PASSWORD: ${DB_PASSWORD}

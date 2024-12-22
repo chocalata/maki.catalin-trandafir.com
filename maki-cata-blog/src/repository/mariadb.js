@@ -22,6 +22,7 @@ async function getEntries() {
 }
 
 async function insertEntry(queryData) {
+	console.log("queryData", queryData);
 	let conn;
 	try {
 		conn = await pool.getConnection();

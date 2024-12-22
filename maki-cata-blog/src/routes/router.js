@@ -80,52 +80,51 @@ module.exports = function routes() {
 			console.log(req.file);
 			console.log(req.body);
 
-			if (/*req.body.password*/ "test" === PUBLISH_PASSWORD) {
-				const queryData = {
-					title: req.body.title,
-					description: req.body.description,
-					image_name: req.file.filename,
-					date: req.body.date,
-				};
+			const queryData = {
+				title: req.body.title,
+				description: req.body.description,
+				image_name: req.file.filename,
+				date: req.body.date,
+			};
 
-				try {
-					// Insert entry into the database
-					await mariadbRepository.insertEntry(queryData);
+			try {
+				// Insert entry into the database
+				console.log("Inserting entry into database");
+				await mariadbRepository.insertEntry(queryData);
+				console.log("Inserted entry into database");
 
-					// Move the file after the database operation
-					await sharp(req.file.path)
-						.withMetadata()
-						.toFile(
-							path.join(
-								__dirname,
-								"../public/img/blog-images",
-								req.file.filename
-							)
-						);
+				// Move the file after the database operation
+				await sharp(req.file.path)
+					.withMetadata()
+					.toFile(
+						path.join(
+							__dirname,
+							"../public/img/blog-images",
+							req.file.filename
+						)
+					);
 
-					// Successfully inserted and moved file
-					res.redirect("/");
-				} catch (err) {
-					console.error(err);
+				// Successfully inserted and moved file
+				res.redirect("/");
+			} catch (err) {
+				console.error(err);
 
-					// Cleanup file in case of an error
-					if (req.file && req.file.path) {
-						fs.unlink(req.file.path, (unlinkErr) => {
-							if (unlinkErr) {
-								console.error(
-									"Error removing file:",
-									unlinkErr
-								);
-							}
-						});
-					}
-
-					// Redirect on error
-					res.redirect("/");
+				// Cleanup file in case of an error
+				if (req.file && req.file.path) {
+					fs.unlink(req.file.path, (unlinkErr) => {
+						if (unlinkErr) {
+							console.error(
+								"Error removing file:",
+								unlinkErr
+							);
+						}
+					});
 				}
-			} else {
+
+				// Redirect on error
 				res.redirect("/");
 			}
+			
 		}
 	);
 
